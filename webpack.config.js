@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './index.js',
+  entry: './src/index.js',
   output: {
     filename: './bundle.js',
     path: path.join(__dirname, 'dist'),
@@ -21,6 +21,17 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin()
+    new HtmlWebpackPlugin({
+      template: 'index.html'
+    })
   ],
+  devServer: {
+    historyApiFallback: true,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      "Access-Control-Allow-Headers": "Origin, Content-Type, Accept, Authorization, X-Request-With",
+      "Access-Control-Allow-Credentials": "true"
+    }
+  }
 };
